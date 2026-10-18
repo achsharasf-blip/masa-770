@@ -41,6 +41,7 @@ create table months (
   theme        text,
   niggun_title text,
   niggun_url   text,
+  niggun_about text,
   check (end_date >= start_date)
 );
 
