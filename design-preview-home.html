@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Playpen+Sans+Hebrew:wght@400;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Playpen+Sans+Hebrew:wght@400;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: phone column. A photo hero of 770 with a boarding pass tucked over its edge; the day as two tear-off tickets that get stamped; the month's mission as a row of passport stamps */
 :root{
@@ -19,7 +19,7 @@
   --line:#E6D8CC;
   --on-wine:#FBF1E6;
   --shadow:rgba(80,20,35,.18);
-  --font-display:"Karantina", "Secular One", "Arial Narrow", sans-serif;
+  --font-display:"Fredoka", "Varela Round", "Rubik", sans-serif;
   --font-hand:"Playpen Sans Hebrew", "Varela Round", "Comic Sans MS", sans-serif;
   --font-body:"IBM Plex Sans Hebrew", "Assistant", "Segoe UI", Arial, sans-serif;
 }
@@ -46,17 +46,19 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 /* ---------- hero ---------- */
 .hero{position:relative;color:#FFF6EE;border-radius:0 0 30px 30px;overflow:hidden;min-height:330px;display:flex;flex-direction:column;justify-content:space-between;padding-block:16px 76px}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(60,10,22,.55) 0%, rgba(60,10,22,.15) 38%, rgba(70,12,26,.92) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(60,10,22,.6) 0%, rgba(60,10,22,.1) 32%, rgba(70,12,26,.92) 100%)}
 .hero > *{position:relative;z-index:1}
 .hero-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.wordmark{font-family:var(--font-display);font-size:26px;line-height:1;letter-spacing:.02em}
+.wordmark{font-family:var(--font-display);font-size:17px;font-weight:600;line-height:1;text-shadow:0 1px 8px rgba(40,8,16,.5)}
 .wordmark b{color:var(--gold-soft);font-weight:700}
 .avatar{width:38px;height:38px;border-radius:50%;background:rgba(255,246,238,.18);border:1px solid rgba(255,246,238,.45);display:grid;place-items:center;font-family:var(--font-hand);font-size:16px;backdrop-filter:blur(6px)}
-.greet{font-family:var(--font-hand);font-size:26px;line-height:1.25;margin:0}
-.date{font-size:13.5px;opacity:.85;margin-top:2px}
+.hello-card{align-self:flex-start;background:rgba(251,243,233,.9);color:#5E1626;border-radius:16px;padding:8px 14px 9px;backdrop-filter:blur(8px);box-shadow:0 8px 20px -12px rgba(40,8,16,.6)}
+.greet{font-family:var(--font-hand);font-size:22px;font-weight:600;line-height:1.25;margin:0}
+.date{font-size:13px;color:#7A4A55;margin-top:1px}
+.hero-mid{display:flex;flex-direction:column;gap:14px}
 .count{display:flex;align-items:flex-end;gap:10px;margin-top:10px}
-.count .num{font-family:var(--font-display);font-size:112px;line-height:.78;font-weight:700;color:var(--on-wine);font-variant-numeric:tabular-nums}
-.count .lbl{font-family:var(--font-display);font-size:30px;line-height:.95;padding-bottom:6px}
+.count .num{font-family:var(--font-display);font-size:86px;line-height:.8;font-weight:600;color:var(--on-wine);font-variant-numeric:tabular-nums}
+.count .lbl{font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.05;padding-bottom:4px}
 .count .lbl small{display:block;font-family:var(--font-body);font-size:12.5px;opacity:.85;margin-top:6px}
 .credit{position:absolute;bottom:62px;left:16px;z-index:1;font-size:10px;opacity:.7}
 
@@ -64,7 +66,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 .pass{margin-top:-58px;position:relative;z-index:2;background:var(--card);border-radius:20px;box-shadow:0 18px 34px -20px var(--shadow);display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
 .pass .cell{padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
 .pass .k{font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
-.pass .v{font-family:var(--font-display);font-size:30px;line-height:1;color:var(--wine)}
+.pass .v{font-family:var(--font-display);font-size:21px;font-weight:600;line-height:1.2;color:var(--wine)}
 .pass .s{font-size:13px;color:var(--ink)}
 .pass .tear{width:0;align-self:stretch;border-inline-start:2px dashed var(--line);position:relative;margin-block:10px}
 .pass .tear::before,.pass .tear::after{content:"";position:absolute;right:-12px;width:22px;height:22px;border-radius:50%;background:var(--paper)}
@@ -72,44 +74,55 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 
 /* ---------- section headings ---------- */
 .h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
-.h h2{font-family:var(--font-display);font-size:34px;font-weight:700;line-height:1;margin:0;letter-spacing:.01em}
+.h h2{font-family:var(--font-display);font-size:23px;font-weight:600;line-height:1.15;margin:0}
 .h .aside{font-size:13px;color:var(--muted)}
 
 /* ---------- route ---------- */
-.route{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-.st{border-radius:14px;padding:9px 4px 8px;text-align:center;border:1.5px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:1px;min-width:0}
-.st .o{font-size:10.5px;color:var(--muted);line-height:1.2}
-.st .m{font-family:var(--font-display);font-size:21px;line-height:1.05}
-.st.now{background:var(--wine);border-color:var(--wine);color:var(--on-wine)}
-.st.now .o{color:var(--on-wine);opacity:.85}
-.st.dest{border-color:var(--gold);background:var(--gold-soft)}
-.st.dest .m{color:var(--wine)}
-
+.route{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:18px 10px 14px}
+.path{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);position:relative}
+.path::before{content:"";position:absolute;top:15px;right:8.33%;left:8.33%;border-top:2.5px dashed var(--rose)}
+.path::after{content:"";position:absolute;top:14px;right:8.33%;width:0;height:3px;background:var(--wine);border-radius:3px}
+.stop{display:flex;flex-direction:column;align-items:center;gap:7px;position:relative;z-index:1;text-align:center;min-width:0}
+.node{width:32px;height:32px;border-radius:50%;background:var(--card);border:2.5px solid var(--rose);display:grid;place-items:center;color:var(--muted);font:600 13px var(--font-display)}
+.stop.now .node{background:var(--wine);border-color:var(--wine);color:var(--on-wine);box-shadow:0 0 0 5px var(--rose-tint)}
+.stop.now .node svg{width:17px;height:17px}
+.stop.dest .node{background:var(--gold);border-color:var(--gold);color:#FFF8EC;width:34px;height:34px;margin-top:-1px}
+.stop .o{font-size:10.5px;color:var(--muted);line-height:1.15}
+.stop .m{font-family:var(--font-display);font-weight:600;font-size:14.5px;line-height:1.15}
+.stop.now .m{color:var(--wine)}
+.stop.dest .m{color:var(--gold)}
+.route .hint{margin:12px 4px 0;font-size:13px;color:var(--muted);text-align:center}
 /* ---------- today tickets ---------- */
 .tickets{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .ticket{position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px 14px 12px;text-align:right;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:8px;min-height:170px;overflow:hidden;min-width:0}
 .ticket:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
 .ticket .tag{align-self:flex-start;font-size:11.5px;font-weight:600;color:var(--wine);background:var(--rose-tint);border-radius:99px;padding:2px 10px}
-.ticket .t{font-family:var(--font-display);font-size:28px;line-height:1.02}
+.ticket .t{font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.25}
 .ticket .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:6px;border-top:2px dashed var(--line);padding-top:9px;font-size:13px;color:var(--muted)}
 .ticket .foot .go{color:var(--wine-2);font-weight:600}
-.ticket .stamp{position:absolute;left:10px;top:44px;width:86px;height:86px;border-radius:50%;border:3px solid var(--wine);color:var(--wine);display:grid;place-items:center;text-align:center;font-family:var(--font-display);font-size:22px;line-height:.95;transform:rotate(-14deg) scale(1.6);opacity:0;transition:opacity .25s, transform .3s cubic-bezier(.2,1.4,.4,1);background:color-mix(in srgb, var(--card) 70%, transparent)}
+.ticket .stamp{position:absolute;left:10px;top:44px;width:86px;height:86px;border-radius:50%;border:3px solid var(--wine);color:var(--wine);display:grid;place-items:center;text-align:center;font-family:var(--font-display);font-size:16px;font-weight:600;line-height:1.1;transform:rotate(-14deg) scale(1.6);opacity:0;transition:opacity .25s, transform .3s cubic-bezier(.2,1.4,.4,1);background:color-mix(in srgb, var(--card) 70%, transparent)}
 .ticket .stamp::before{content:"";position:absolute;inset:4px;border-radius:50%;border:1.5px dashed var(--wine)}
 .ticket[aria-pressed="true"]{border-color:var(--rose)}
 .ticket[aria-pressed="true"] .stamp{opacity:1;transform:rotate(-14deg) scale(1)}
 .today-note{font-family:var(--font-hand);font-size:15px;color:var(--wine-2);text-align:center;min-height:1.6em;margin-top:10px}
 
+.bonus{margin-top:10px;width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:transparent;border:1.5px dashed var(--gold);border-radius:16px;padding:11px 14px;font:inherit;color:inherit;text-align:right;cursor:pointer}
+.bonus:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+.b-tag{font-size:11.5px;font-weight:700;color:#FFF8EC;background:var(--gold);border-radius:99px;padding:2px 10px}
+.b-t{font-weight:600}
+.b-s{font-size:13.5px;color:var(--gold);font-weight:600;white-space:nowrap}
+.bonus[aria-pressed="true"]{background:var(--gold-soft);border-style:solid}
 /* ---------- mission ---------- */
 .mission{background:var(--rose-tint);border-radius:22px;padding:18px 16px 16px;display:flex;flex-direction:column;gap:12px}
 .mission .k{font-size:12px;letter-spacing:.06em;color:var(--wine);font-weight:600}
-.mission .t{font-family:var(--font-display);font-size:32px;line-height:1;margin:2px 0 0}
+.mission .t{font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.25;margin:4px 0 0}
 .mission .sub{font-size:14px;color:var(--muted);margin:0}
 .dots{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
 .dots span{aspect-ratio:1;max-width:100%;border-radius:50%;border:1.5px dashed var(--rose);display:grid;place-items:center;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
 .dots span.on{background:var(--wine);border:1.5px solid var(--wine);color:var(--on-wine)}
 .row-act{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .row-act .n{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
-.row-act .n b{font-family:var(--font-display);font-size:26px;color:var(--wine);font-weight:700}
+.row-act .n b{font-family:var(--font-display);font-size:24px;color:var(--wine);font-weight:700}
 .btn{border:0;border-radius:99px;padding:10px 18px;font:600 15px var(--font-body);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .btn:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
 .btn-wine{background:var(--wine);color:var(--on-wine)}
@@ -124,7 +137,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 .niggun img{width:110px;height:100%;object-fit:cover;object-position:center 18%;display:block;max-width:100%}
 .niggun .body{padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
 .niggun .k{font-size:12px;letter-spacing:.06em;opacity:.8}
-.niggun .name{font-family:var(--font-display);font-size:36px;line-height:.98}
+.niggun .name{font-family:var(--font-display);font-size:23px;font-weight:600;line-height:1.2}
 .niggun .about{font-size:14px;line-height:1.6;opacity:.92;margin:0}
 .niggun .bottom{border-top:1px solid rgba(255,246,238,.18);padding:12px 16px 14px;display:flex;flex-direction:column;gap:10px}
 .weeks{display:flex;gap:8px;align-items:center;font-size:12.5px;opacity:.9}
@@ -136,7 +149,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 .more{border-top:1px solid rgba(255,246,238,.18)}
 .more summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:600;font-size:14.5px;display:flex;justify-content:space-between;align-items:center}
 .more summary::-webkit-details-marker{display:none}
-.more summary::after{content:"+";font-family:var(--font-display);font-size:26px;line-height:1;color:var(--gold-soft)}
+.more summary::after{content:"+";font-family:var(--font-display);font-size:22px;line-height:1;color:var(--gold-soft)}
 .more[open] summary::after{content:"−"}
 .more summary:focus-visible{outline:2px solid var(--gold-soft);outline-offset:-2px}
 .more-body{padding:0 16px 14px;font-size:15px;line-height:1.7;display:flex;flex-direction:column;gap:10px}
@@ -147,7 +160,7 @@ a.btn{text-decoration:none}
 .events{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .event{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;background:var(--card);border-radius:16px;padding:10px 12px;border:1.5px solid var(--line)}
 .event .d{text-align:center;background:var(--rose-tint);border-radius:12px;padding:6px 0 4px}
-.event .d .day{font-family:var(--font-display);font-size:30px;line-height:.9;color:var(--wine);font-weight:700}
+.event .d .day{font-family:var(--font-display);font-size:22px;line-height:1;color:var(--wine);font-weight:600}
 .event .d .mo{font-size:11.5px;color:var(--muted)}
 .event .what{font-weight:600;line-height:1.35}
 .event .meta{font-size:13px;color:var(--muted)}
@@ -177,9 +190,11 @@ nav.tabs svg{width:21px;height:21px}
       <span class="wordmark">המסע שלי ל־<b>770</b></span>
       <span class="avatar" aria-hidden="true">מ</span>
     </div>
-    <div>
-      <p class="greet">בוקר טוב, מושקא</p>
-      <div class="date">יום רביעי · י׳ חשוון תשפ״ז</div>
+    <div class="hero-mid">
+      <div class="hello-card">
+        <p class="greet">בוקר טוב, מושקא</p>
+        <div class="date">יום רביעי · י׳ חשוון תשפ״ז</div>
+      </div>
       <div class="count">
         <span class="num">125</span>
         <span class="lbl">ימים<br>ל־770<small>ממריאות בט״ז אדר א׳</small></span>
@@ -198,12 +213,15 @@ nav.tabs svg{width:21px;height:21px}
     <section aria-label="תחנות המסע">
       <div class="h"><h2>הדרך שלי</h2><span class="aside">תחנה אחת בכל חודש</span></div>
       <div class="route">
-        <div class="st now"><span class="o">תחנה 1</span><span class="m">חשוון</span></div>
-        <div class="st"><span class="o">תחנה 2</span><span class="m">כסלו</span></div>
-        <div class="st"><span class="o">תחנה 3</span><span class="m">טבת</span></div>
-        <div class="st"><span class="o">תחנה 4</span><span class="m">שבט</span></div>
-        <div class="st"><span class="o">תחנה 5</span><span class="m">אדר א׳</span></div>
-        <div class="st dest"><span class="o">היעד</span><span class="m">770</span></div>
+        <ol class="path">
+          <li class="stop now"><span class="node"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.5 13.2 21 6.8c.6-.2 1.1.4.7.9l-4.6 5.6.6 6.3c0 .6-.6.9-1.1.6l-3.3-2.4-2.6 2.6c-.4.4-1 .1-1-.4v-3.6l-7.1-1.8c-.6-.2-.6-1.1-.1-1.4z"/></svg></span><span class="o">תחנה ראשונה</span><span class="m">חשוון</span></li>
+          <li class="stop"><span class="node">2</span><span class="o">תחנה שנייה</span><span class="m">כסלו</span></li>
+          <li class="stop"><span class="node">3</span><span class="o">תחנה שלישית</span><span class="m">טבת</span></li>
+          <li class="stop"><span class="node">4</span><span class="o">תחנה רביעית</span><span class="m">שבט</span></li>
+          <li class="stop"><span class="node">5</span><span class="o">תחנה חמישית</span><span class="m">אדר א׳</span></li>
+          <li class="stop dest"><span class="node">★</span><span class="o">היעד</span><span class="m">770</span></li>
+        </ol>
+        <p class="hint">את כאן. בר״ח כסלו ממשיכות לתחנה הבאה</p>
       </div>
     </section>
 
@@ -224,6 +242,11 @@ nav.tabs svg{width:21px;height:21px}
         </button>
       </div>
       <p class="today-note" id="todayNote" aria-live="polite"></p>
+      <button class="bonus" id="bonus" type="button" aria-pressed="false">
+        <span class="b-tag">בונוס</span>
+        <span class="b-t">סרטון השבוע של הרבי</span>
+        <span class="b-s" id="bonusS">צפיתי ›</span>
+      </button>
     </section>
 
     <section class="mission" aria-label="המשימה של חשוון">
@@ -273,11 +296,11 @@ nav.tabs svg{width:21px;height:21px}
       <ul class="events">
         <li class="event">
           <div class="d"><div class="day">ט״ז</div><div class="mo">חשוון</div></div>
-          <div><div class="what">השיעור השבועי<span class="pill">חובה</span></div><div class="meta">יום שלישי 27.10</div></div>
+          <div><div class="what">השיעור השבועי</div><div class="meta">יום שלישי 27.10</div></div>
         </li>
         <li class="event">
           <div class="d"><div class="day">י״ט</div><div class="mo">חשוון</div></div>
-          <div><div class="what">שבת קבוצתית<span class="pill">חובה</span></div><div class="meta">מתחילות בערב שבת, יום שישי 30.10</div></div>
+          <div><div class="what">שבת קבוצתית</div><div class="meta">מתחילות בערב שבת, יום שישי 30.10</div></div>
         </li>
       </ul>
     </section>
@@ -320,6 +343,8 @@ nav.tabs svg{width:21px;height:21px}
 
   var nb=document.getElementById('nBtn'), wn=document.getElementById('wNow');
   nb.addEventListener('click',function(){var on=nb.getAttribute('aria-pressed')!=='true';nb.setAttribute('aria-pressed',on);nb.textContent=on?'שמעתי השבוע ✓':'שמעתי השבוע';wn.classList.toggle('on',on);});
+  var bo=document.getElementById('bonus'),bs=document.getElementById('bonusS');
+  bo.addEventListener('click',function(){var on=bo.getAttribute('aria-pressed')!=='true';bo.setAttribute('aria-pressed',on);bs.textContent=on?'נוסף לך בונוס ✦':'צפיתי ›';});
   document.querySelectorAll('nav.tabs a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
 })();
 </script>
