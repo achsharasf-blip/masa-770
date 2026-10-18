@@ -1,0 +1,231 @@
+<title>המסע שלי · הדף האישי</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Playpen+Sans+Hebrew:wght@400;600&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: phone column. A photo hero of 770 with a boarding pass tucked over its edge; the day as two tear-off tickets that get stamped; the month's mission as a row of passport stamps */
+:root{
+  --paper:#F7F0E7;
+  --card:#FFFAF4;
+  --ink:#2A1A1E;
+  --muted:#80676B;
+  --wine:#6E1A2C;
+  --wine-2:#912F45;
+  --rose:#D3A7AA;
+  --rose-tint:#F3E3E1;
+  --gold:#B48A3E;
+  --gold-soft:#E8D3A6;
+  --line:#E6D8CC;
+  --on-wine:#FBF1E6;
+  --shadow:rgba(80,20,35,.18);
+  --font-display:"Fredoka", "Varela Round", "Rubik", sans-serif;
+  --font-hand:"Playpen Sans Hebrew", "Varela Round", "Comic Sans MS", sans-serif;
+  --font-body:"IBM Plex Sans Hebrew", "Assistant", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#170F12; --card:#22171B; --ink:#F3E8DE; --muted:#B9A0A4;
+    --wine:#B04A61; --wine-2:#C9667C; --rose:#8E6267; --rose-tint:#33232A;
+    --gold:#D6B06A; --gold-soft:#4A3B22; --line:#392A30; --on-wine:#FFF6EE;
+    --shadow:rgba(0,0,0,.45); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#170F12; --card:#22171B; --ink:#F3E8DE; --muted:#B9A0A4;
+  --wine:#B04A61; --wine-2:#C9667C; --rose:#8E6267; --rose-tint:#33232A;
+  --gold:#D6B06A; --gold-soft:#4A3B22; --line:#392A30; --on-wine:#FFF6EE;
+  --shadow:rgba(0,0,0,.45); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;direction:rtl}
+.app{max-width:440px;margin:0 auto;padding-bottom:104px}
+.pad{padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+.stack{display:flex;flex-direction:column;gap:26px}
+
+/* ---------- profile header ---------- */
+.ph{background:var(--wine);color:var(--on-wine);border-radius:0 0 30px 30px;padding-block:18px 26px;position:relative;overflow:hidden}
+.ph::before{content:"770";position:absolute;left:-14px;bottom:-40px;font-family:var(--font-display);font-weight:700;font-size:170px;line-height:1;color:rgba(255,246,238,.06)}
+.ph-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ph-top .wm{font-family:var(--font-display);font-weight:600;font-size:17px}
+.ph-top .wm b{color:var(--gold-soft)}
+.ph-name{font-family:var(--font-hand);font-weight:600;font-size:24px;margin:18px 0 2px}
+.ph-sub{font-size:13.5px;opacity:.85}
+.score{display:grid;grid-template-columns:132px 1fr;gap:18px;align-items:center;margin-top:18px;position:relative}
+.ring{position:relative;width:132px;height:132px}
+.ring svg{width:132px;height:132px;transform:rotate(-90deg)}
+.ring .in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ring .pts{font-family:var(--font-display);font-weight:600;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.ring .u{font-size:12px;opacity:.85}
+.next{display:flex;flex-direction:column;gap:6px}
+.next .k{font-size:12px;opacity:.8}
+.next .big{font-family:var(--font-display);font-size:22px;font-weight:600;line-height:1.2}
+.next .big b{color:var(--gold-soft)}
+.next .s{font-size:13px;opacity:.85}
+
+/* ---------- tiers ---------- */
+.h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+.h h2{font-family:var(--font-display);font-size:23px;font-weight:600;line-height:1.15;margin:0}
+.h .aside{font-size:13px;color:var(--muted)}
+.tiers{display:flex;flex-direction:column;gap:10px}
+.tier{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:12px 14px}
+.tier .ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--rose-tint);color:var(--wine)}
+.tier .ico svg{width:26px;height:26px}
+.tier .n{font-family:var(--font-display);font-weight:600;font-size:18px;line-height:1.2}
+.tier .g{font-size:13px;color:var(--muted);line-height:1.4}
+.tier .p{font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--wine);font-variant-numeric:tabular-nums;text-align:center;line-height:1.1}
+.tier .p small{display:block;font-family:var(--font-body);font-weight:400;font-size:11px;color:var(--muted)}
+.tier .bar{grid-column:1/-1;height:7px;border-radius:7px;background:var(--rose-tint);overflow:hidden}
+.tier .bar i{display:block;height:100%;background:var(--wine);border-radius:7px}
+.tier.first{border-color:var(--gold);background:linear-gradient(135deg,var(--card),var(--gold-soft))}
+.tier.first .ico{background:var(--gold);color:#FFF8EC}
+.tier.first .bar i{background:var(--gold)}
+
+/* ---------- breakdown ---------- */
+.list{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:4px 16px}
+.li{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.li:last-child{border-bottom:0}
+.li .n{font-weight:600}
+.li .w{font-size:12.5px;color:var(--muted)}
+.li .p{font-family:var(--font-display);font-weight:600;font-size:20px;color:var(--wine);font-variant-numeric:tabular-nums;grid-row:1/3;grid-column:2}
+.li .p small{font-family:var(--font-body);font-weight:400;font-size:12px;color:var(--muted)}
+.li.bonus .n::after{content:"בונוס";font-size:11px;font-weight:700;color:#FFF8EC;background:var(--gold);border-radius:99px;padding:1px 8px;margin-inline-start:8px;vertical-align:2px}
+
+/* ---------- presence ---------- */
+.pres{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pc{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.pc .k{font-size:12.5px;color:var(--muted)}
+.pc .v{font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums}
+.pc .v small{font-size:15px;color:var(--muted);font-weight:500}
+.pc .s{font-size:12.5px;color:var(--muted)}
+.marks{display:flex;gap:5px;margin-top:4px}
+.marks i{width:16px;height:16px;border-radius:5px;background:var(--wine)}
+.marks i.off{background:transparent;border:1.5px dashed var(--rose)}
+
+/* ---------- monthly challenge ---------- */
+.ch{background:var(--rose-tint);border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.ch .k{font-size:12px;font-weight:600;color:var(--wine);letter-spacing:.04em}
+.ch .t{font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.25;margin:0}
+.ch .s{font-size:14px;color:var(--muted);margin:0}
+.meter{position:relative;height:12px;border-radius:12px;background:var(--card);overflow:visible}
+.meter i{display:block;height:100%;border-radius:12px;background:var(--wine)}
+.meter b{position:absolute;top:-5px;right:90%;width:2px;height:22px;background:var(--gold)}
+.meter-l{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+
+/* ---------- passport ---------- */
+.passport{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.ps{aspect-ratio:1;max-width:100%;border-radius:50%;border:2px dashed var(--rose);display:grid;place-items:center;text-align:center;font-size:11px;color:var(--muted);line-height:1.15;padding:4px}
+.ps b{display:block;font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ink)}
+.ps.got{border:3px solid var(--wine);color:var(--wine);transform:rotate(-10deg);background:var(--card)}
+.ps.got b{color:var(--wine)}
+.ps.got::after{content:"";}
+.note{font-size:12px;color:var(--muted);text-align:center;margin:0}
+.demo-note{font-size:12px;color:var(--muted);text-align:center;margin:0}
+/* ---------- bottom nav ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#3C0A16}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:5;padding-bottom:max(10px, env(safe-area-inset-bottom,0px));padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));pointer-events:none}
+nav.tabs ul{pointer-events:auto;list-style:none;margin:0 auto;padding:7px;max-width:400px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 30px -14px var(--shadow)}
+nav.tabs a{display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 0 5px;border-radius:16px;font-size:11.5px;color:var(--muted);text-decoration:none}
+nav.tabs a[aria-current="page"]{background:var(--wine);color:var(--on-wine);font-weight:600}
+nav.tabs svg{width:21px;height:21px}
+.demo-note{font-size:12px;color:var(--muted);text-align:center;margin:0}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="app">
+  <header class="ph pad">
+    <div class="ph-top"><span class="wm">המסע שלי ל־<b>770</b></span><span class="avatar" style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,246,238,.45);display:grid;place-items:center;font-family:var(--font-hand)">מ</span></div>
+    <p class="ph-name">המסע של מושקא</p>
+    <div class="ph-sub">סוף התחנה הראשונה · ל׳ חשוון</div>
+    <div class="score">
+      <div class="ring" role="img" aria-label="89 נקודות מתוך 350 לסף המסע">
+        <svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="56" fill="none" stroke="rgba(255,246,238,.18)" stroke-width="12"/><circle cx="66" cy="66" r="56" fill="none" stroke="var(--gold-soft)" stroke-width="12" stroke-linecap="round" stroke-dasharray="89.5 351.9"/></svg>
+        <div class="in"><span class="pts">89</span><span class="u">נקודות</span></div>
+      </div>
+      <div class="next">
+        <span class="k">היעד הקרוב</span>
+        <span class="big">עוד <b>261</b> נקודות<br>לכרטיס העלייה</span>
+        <span class="s">בקצב הנוכחי תגיעי אליו בתחילת שבט ✦</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="pad stack" style="padding-top:22px">
+    <section aria-label="המדרגות">
+      <div class="h"><h2>לאן אפשר להגיע</h2><span class="aside">שלוש מחלקות</span></div>
+      <div class="tiers">
+        <div class="tier">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M15 6v12" stroke-dasharray="2 2"/></svg></span>
+          <div><div class="n">כרטיס עלייה</div><div class="g">הסף של המסע. איתו טסים ל־770</div></div>
+          <div class="p">350<small>נקודות</small></div>
+          <div class="bar"><i style="width:25%"></i></div>
+        </div>
+        <div class="tier">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11h14v8H5zM8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+          <div><div class="n">מחלקת עסקים</div><div class="g">ערכת טיסה מפנקת + שובר לארומה בשדה</div></div>
+          <div class="p">450<small>נקודות</small></div>
+          <div class="bar"><i style="width:20%"></i></div>
+        </div>
+        <div class="tier first">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></span>
+          <div><div class="n">מחלקה ראשונה</div><div class="g">ערכת טיסה + שובר לארומה + שובר לספורה</div></div>
+          <div class="p">550<small>נקודות</small></div>
+          <div class="bar"><i style="width:16%"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="איך צברתי">
+      <div class="h"><h2>איך צברתי</h2><span class="aside">כמה שווה כל דבר</span></div>
+      <div class="list">
+        <div class="li"><span class="n">סיפור לפני השינה</span><span class="w">נקודה לכל יום · 13 ימים</span><span class="p">13</span></div>
+        <div class="li"><span class="n">לימוד יומי</span><span class="w">נקודה לכל יום · 12 ימים</span><span class="p">12</span></div>
+        <div class="li"><span class="n">סרטון השבוע</span><span class="w">3 נקודות לשבוע · 3 שבועות</span><span class="p">9</span></div>
+        <div class="li"><span class="n">ניגון השבוע</span><span class="w">3 נקודות לשבוע · 3 שבועות</span><span class="p">9</span></div>
+        <div class="li"><span class="n">משימת החודש</span><span class="w">2 נקודות לכל פעם · 8 מתוך 10</span><span class="p">16</span></div>
+        <div class="li"><span class="n">השיעור השבועי</span><span class="w">5 נקודות לכל שיעור · 3 שיעורים</span><span class="p">15</span></div>
+        <div class="li"><span class="n">שבת קבוצתית</span><span class="w">15 נקודות לשבת</span><span class="p">15</span></div>
+        <div class="li bonus"><span class="n">לימוד בעל פה</span><span class="w">10 נקודות לכל קטע</span><span class="p">0</span></div>
+        <div class="li bonus"><span class="n">לימוד בעיון</span><span class="w">5 נקודות לכל קטע</span><span class="p">0</span></div>
+      </div>
+    </section>
+
+    <section aria-label="נוכחות">
+      <div class="h"><h2>המפגשים שלי</h2></div>
+      <div class="pres">
+        <div class="pc"><span class="k">שיעורים שבועיים</span><span class="v">3 <small>/ 3</small></span><div class="marks"><i></i><i></i><i></i></div><span class="s">נשארו לך 3 היעדרויות</span></div>
+        <div class="pc"><span class="k">שבתות קבוצתיות</span><span class="v">1 <small>/ 4</small></span><div class="marks"><i></i><i class="off"></i><i class="off"></i><i class="off"></i></div><span class="s">הבאה: י״א כסלו</span></div>
+      </div>
+    </section>
+
+    <section class="ch" aria-label="אתגר ההתמדה של חשוון">
+      <span class="k">אתגר ההתמדה של חשוון</span>
+      <p class="t">90% מהכול, כל החודש</p>
+      <p class="s">מי שמגיעה ל־90% בכל המשימות של החודש מקבלת שובר של 5$ לספורה.</p>
+      <div class="meter"><i style="width:82%"></i><b title="90%"></b></div>
+      <div class="meter-l"><span>את ב־82%</span><span>היעד: 90%</span></div>
+    </section>
+
+    <section aria-label="חותמות הדרכון">
+      <div class="h"><h2>חותמות הדרכון</h2><span class="aside">חותמת לכל תחנה שהושלמה</span></div>
+      <div class="passport">
+        <div class="ps got"><span><b>חשוון</b>הושלמה</span></div>
+        <div class="ps"><span><b>כסלו</b>בדרך</span></div>
+        <div class="ps"><span><b>טבת</b></span></div>
+        <div class="ps"><span><b>שבט</b></span></div>
+        <div class="ps"><span><b>אדר א׳</b></span></div>
+      </div>
+    </section>
+
+    <p class="demo-note">דף לדוגמה · הנתונים להמחשה, וערכי הנקודות הם הצעה לאישור</p>
+  </div>
+</div>
+<nav class="tabs" aria-label="ניווט">
+  <ul>
+    <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>בית</a></li>
+    <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M9 3v4M15 3v4"/></svg>החודש</a></li>
+    <li><a href="#" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h6"/></svg>המסע שלי</a></li>
+    <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>פינת החודש</a></li>
+  </ul>
+</nav>
+<script>document.querySelectorAll('nav.tabs a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});</script>
