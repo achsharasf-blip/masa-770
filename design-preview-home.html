@@ -162,6 +162,8 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 .weeks i{width:26px;height:6px;border-radius:6px;background:rgba(255,246,238,.22);display:inline-block}
 .weeks i.on{background:var(--gold-soft)}
 .weeks i.now{outline:1.5px solid rgba(255,246,238,.7);outline-offset:2px}
+.ncount{font-family:var(--font-display);font-size:20px;color:var(--gold-soft);line-height:1}
+.weeks{flex-wrap:wrap}
 .niggun .acts{display:flex;gap:10px;flex-wrap:wrap}
 
 .more{border-top:1px solid rgba(255,246,238,.18)}
@@ -280,7 +282,7 @@ nav.tabs svg{width:21px;height:21px}
       <div>
         <span class="k">המשימה של חשוון</span>
         <p class="t">קריאת שמע שעל המיטה או ברכות השחר</p>
-        <p class="sub">אחת מהשתיים, בכל יום שאת מצליחה. היעד: 10 פעמים החודש.</p>
+        <p class="sub">אחת מהשתיים, בכל יום שאת מצליחה. היעד: 10 פעמים החודש, וכל פעם נוספת היא בונוס.</p>
       </div>
       <div class="dots" id="dots" aria-hidden="true"></div>
       <div class="row-act">
@@ -310,10 +312,10 @@ nav.tabs svg{width:21px;height:21px}
         </div>
       </details>
       <div class="bottom">
-        <div class="weeks"><span>השבועות של חשוון:</span><i class="on"></i><i class="now" id="wNow"></i><i></i><i></i></div>
+        <div class="weeks"><span>השבוע שמעתי:</span><b id="nCount" class="ncount">0</b><span id="nExtra">פעם אחת בשבוע, וכל יום נוסף +1 בונוס</span></div>
         <div class="acts">
           <a class="btn btn-light" href="https://www.youtube.com/watch?v=MKDybx7g2lQ" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M10 6 2.5 10.5v-9z" fill="currentColor"/></svg>האזנה</a>
-          <button class="btn btn-ghost" id="nBtn" type="button" aria-pressed="false">שמעתי השבוע</button>
+          <button class="btn btn-ghost" id="nBtn" type="button" aria-pressed="false">שמעתי היום</button>
         </div>
       </div>
     </section>
@@ -368,8 +370,8 @@ nav.tabs svg{width:21px;height:21px}
   mb.addEventListener('click',function(){ if(n<10){n++;} drawDots(); mb.disabled=true; mb.textContent='סומן להיום ✓'; });
   drawDots();
 
-  var nb=document.getElementById('nBtn'), wn=document.getElementById('wNow');
-  nb.addEventListener('click',function(){var on=nb.getAttribute('aria-pressed')!=='true';nb.setAttribute('aria-pressed',on);nb.textContent=on?'שמעתי השבוע ✓':'שמעתי השבוע';wn.classList.toggle('on',on);});
+  var nb=document.getElementById('nBtn'), nc=document.getElementById('nCount'), nx=document.getElementById('nExtra');
+  nb.addEventListener('click',function(){var on=nb.getAttribute('aria-pressed')!=='true';nb.setAttribute('aria-pressed',on);nb.textContent=on?'שמעתי היום ✓':'שמעתי היום';nc.textContent=on?'1':'0';nx.textContent=on?'השבוע מסומן. כל יום נוסף שתשמעי: +1 בונוס':'פעם אחת בשבוע, וכל יום נוסף +1 בונוס';});
   var vb=document.getElementById('vBtn'),vn=document.getElementById('vNow');
   var vc=document.querySelector('.video');vb.addEventListener('click',function(){var on=vb.getAttribute('aria-pressed')!=='true';vb.setAttribute('aria-pressed',on);vb.textContent=on?'צפיתי ✓':'צפיתי';vn.classList.toggle('on',on);vc.classList.toggle('done',on);});
   document.querySelectorAll('nav.tabs a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});

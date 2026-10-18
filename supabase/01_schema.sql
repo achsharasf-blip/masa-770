@@ -58,7 +58,11 @@ create table tasks (
   publish_date date not null,          -- ממתי המשתתפות רואות את המשימה
   is_required  boolean not null default true,   -- חובה (תנאי סף) או בונוס
   target_count int  not null default 1 check (target_count >= 1),
-                                       -- כמה פעמים בתקופה: נטילת ידיים 15 בחודש, ניגון 1 בשבוע
+                                       -- הבסיס: כמה פעמים בתקופה (50% מהמשימה החודשית, ניגון פעם בשבוע)
+  max_count    int  not null default 1,  -- עד כמה פעמים אפשר לסמן (מעבר לבסיס = בונוס)
+  points       int  not null default 0,  -- נקודות על הגעה לבסיס (חלקי = יחסי)
+  extra_points int  not null default 0,  -- נקודות על כל פעם מעבר לבסיס
+  check (max_count >= target_count),
   sort_order   int  not null default 0,
   created_at   timestamptz not null default now(),
   check (end_date >= start_date)
@@ -98,7 +102,8 @@ create table events (
   event_date   date not null,
   title        text not null,
   description  text,
-  is_mandatory boolean not null default false
+  is_mandatory boolean not null default false,
+  points       int not null default 0
 );
 
 -- נוכחות — נרשמת רק על ידי המנהלת; משתתפת רואה רק את שלה
