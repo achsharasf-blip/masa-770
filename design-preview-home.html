@@ -1,0 +1,278 @@
+<title>המסע שלי ל־770</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Assistant:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a single phone column; the day is a boarding pass, the months are stations on one route to 770 */
+:root{
+  --paper:#F5EEE4;      /* שמנת */
+  --card:#FBF7F1;
+  --ink:#2B1D20;
+  --muted:#7A6266;
+  --wine:#6F1D2E;       /* בורדו */
+  --wine-soft:#8E3446;
+  --rose:#C59A9E;       /* ורוד מעושן */
+  --rose-tint:#EFE0DF;
+  --gold:#AF8A45;       /* זהב עדין */
+  --line:#E3D6CB;
+  --on-wine:#F7EDE3;
+  --font-display:"Frank Ruhl Libre", "David Libre", "Times New Roman", serif;
+  --font-body:"Assistant", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1A1214; --card:#241A1D; --ink:#F1E6DC; --muted:#B79FA2;
+    --wine:#A8445A; --wine-soft:#C2647A; --rose:#9C7276; --rose-tint:#33242A;
+    --gold:#D0AC66; --line:#3A2B30; --on-wine:#FFF6EE; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1A1214; --card:#241A1D; --ink:#F1E6DC; --muted:#B79FA2;
+  --wine:#A8445A; --wine-soft:#C2647A; --rose:#9C7276; --rose-tint:#33242A;
+  --gold:#D0AC66; --line:#3A2B30; --on-wine:#FFF6EE; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;direction:rtl}
+.app{max-width:440px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));padding-block:14px 104px;display:flex;flex-direction:column;gap:22px}
+.demo-note{font-size:12.5px;color:var(--muted);text-align:center;border:1px dashed var(--line);border-radius:10px;padding:6px 10px}
+
+/* header */
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.hello{font-family:var(--font-display);font-size:28px;font-weight:500;line-height:1.15;margin:0;text-wrap:balance}
+.date{font-size:13.5px;color:var(--muted);margin-top:4px}
+.mark{font-family:var(--font-display);font-size:13px;color:var(--gold);letter-spacing:.06em;white-space:nowrap}
+
+/* boarding pass */
+.pass{background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 1px 0 var(--line),0 14px 30px -18px rgba(70,20,30,.45)}
+.pass-photo{position:relative;aspect-ratio:3/2;max-width:100%;background:var(--rose-tint)}
+.pass-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.pass-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(40,12,18,.78), rgba(40,12,18,0) 55%)}
+.pass-dest{position:absolute;inset:auto 18px 14px 18px;z-index:1;color:#FFF6EE;display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.pass-dest .code{font-family:var(--font-display);font-size:52px;font-weight:700;line-height:.9;letter-spacing:.02em}
+.pass-dest .where{font-size:12.5px;opacity:.9;text-align:left;line-height:1.35}
+.credit{position:absolute;top:8px;left:10px;z-index:1;font-size:10px;color:rgba(255,246,238,.75)}
+.perf{position:relative;height:0;border-top:2px dashed var(--line);margin:0 14px}
+.perf::before,.perf::after{content:"";position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:var(--paper)}
+.perf::before{right:-25px}.perf::after{left:-25px}
+.pass-stub{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 18px 16px}
+.field .k{font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.field .v{font-family:var(--font-display);font-size:19px;font-weight:500;line-height:1.25;font-variant-numeric:tabular-nums}
+.field .v.big{color:var(--wine);font-size:26px;font-weight:700}
+
+/* section titles */
+.sec{display:flex;flex-direction:column;gap:10px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.sec-h h2{font-family:var(--font-display);font-size:21px;font-weight:500;margin:0}
+.sec-h .aside{font-size:13px;color:var(--muted)}
+
+/* route */
+.route{background:var(--card);border-radius:16px;padding:16px 14px 12px}
+.stops{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);position:relative}
+.stops::before{content:"";position:absolute;top:9px;right:8%;left:8%;height:2px;background:var(--line)}
+.stops::after{content:"";position:absolute;top:9px;right:8%;width:5%;height:2px;background:var(--wine)}
+.stop{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;text-align:center}
+.dot{width:20px;height:20px;border-radius:50%;background:var(--card);border:2px solid var(--line)}
+.stop.now .dot{border-color:var(--wine);background:var(--wine);box-shadow:0 0 0 4px var(--rose-tint)}
+.stop.dest .dot{border-color:var(--gold);background:var(--gold)}
+.stop .n{font-size:12.5px;color:var(--muted);line-height:1.2}
+.stop.now .n{color:var(--wine);font-weight:700}
+.stop.dest .n{color:var(--gold);font-weight:700;font-family:var(--font-display);font-size:14px}
+
+/* today */
+.today{display:flex;flex-direction:column;gap:10px}
+.task{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;background:var(--card);border-radius:16px;padding:14px 16px;border:1px solid transparent;cursor:pointer;text-align:right;font:inherit;color:inherit;width:100%}
+.task:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+.task .kind{font-size:11.5px;letter-spacing:.08em;color:var(--gold);font-weight:600}
+.task .t{font-family:var(--font-display);font-size:18.5px;line-height:1.3}
+.task .open{font-size:13px;color:var(--wine-soft);white-space:nowrap}
+.check{width:30px;height:30px;border-radius:50%;border:2px solid var(--rose);display:grid;place-items:center;transition:background .2s,border-color .2s}
+.check svg{width:16px;height:16px;opacity:0;transform:scale(.6);transition:opacity .2s,transform .2s}
+.task[aria-pressed="true"]{border-color:var(--rose-tint)}
+.task[aria-pressed="true"] .check{background:var(--wine);border-color:var(--wine)}
+.task[aria-pressed="true"] .check svg{opacity:1;transform:none}
+.task[aria-pressed="true"] .t{color:var(--muted)}
+.stamp{font-size:13px;color:var(--muted);text-align:center;min-height:1.5em}
+
+/* month habits */
+.habits{background:var(--card);border-radius:16px;padding:6px 16px}
+.habit{display:flex;flex-direction:column;gap:7px;padding:12px 0;border-bottom:1px solid var(--line)}
+.habit:last-child{border-bottom:0}
+.habit .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.habit .name{font-weight:600}
+.habit .req{font-size:11.5px;color:var(--gold);margin-inline-start:6px;font-weight:600}
+.habit .count{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;white-space:nowrap}
+.habit .count b{color:var(--ink);font-size:16px}
+.bar{height:6px;border-radius:6px;background:var(--rose-tint);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--wine);border-radius:6px}
+
+/* niggun */
+.niggun{display:grid;grid-template-columns:96px 1fr;gap:0;background:var(--wine);color:var(--on-wine);border-radius:18px;overflow:hidden}
+.niggun img{width:96px;height:100%;object-fit:cover;object-position:center 20%;display:block;max-width:100%}
+.niggun .body{padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.niggun .k{font-size:11.5px;letter-spacing:.1em;opacity:.8}
+.niggun .name{font-family:var(--font-display);font-size:22px;line-height:1.2}
+.niggun .play{margin-top:6px;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--on-wine);color:var(--wine);border:0;border-radius:99px;padding:7px 14px;font:600 14px var(--font-body);cursor:pointer}
+
+/* events */
+.events{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.event{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:center;background:var(--card);border-radius:14px;padding:10px 12px}
+.event .d{text-align:center;border-inline-start:2px solid var(--gold);padding-inline-start:10px}
+.event .d .day{font-family:var(--font-display);font-size:22px;font-weight:700;line-height:1;color:var(--wine)}
+.event .d .mo{font-size:11.5px;color:var(--muted)}
+.event .what{font-weight:600;line-height:1.35}
+.event .meta{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;font-size:11px;font-weight:700;color:var(--wine);background:var(--rose-tint);border-radius:99px;padding:1px 8px;margin-inline-start:6px;vertical-align:1px}
+
+/* goal */
+.goal{background:var(--card);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.goal label{font-size:13.5px;color:var(--muted)}
+.goal textarea{width:100%;min-height:64px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--paper);color:var(--ink);font:16px/1.5 var(--font-body)}
+.goal textarea:focus-visible{outline:2px solid var(--wine);outline-offset:1px}
+
+/* bottom nav */
+nav.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));z-index:5}
+nav.tabs ul{list-style:none;margin:0 auto;padding:8px 0;max-width:440px;display:grid;grid-template-columns:repeat(4,1fr)}
+nav.tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:var(--muted);text-decoration:none}
+nav.tabs a[aria-current="page"]{color:var(--wine);font-weight:700}
+nav.tabs svg{width:22px;height:22px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="app">
+  <p class="demo-note">מסך לדוגמה לאישור עיצוב · כך ייראה מסך הבית ביום ההשקה, י׳ חשוון</p>
+
+  <header class="top">
+    <div>
+      <h1 class="hello">בוקר טוב, מושקא</h1>
+      <div class="date">יום רביעי · י׳ חשוון תשפ״ז</div>
+    </div>
+    <div class="mark">המסע שלי ל־770</div>
+  </header>
+
+  <section class="pass" aria-label="כרטיס המסע">
+    <div class="pass-photo">
+      <img src="data:image/jpeg;base64,__IMG770__" alt="בית חיינו, 770 איסטרן פארקווי">
+      <span class="credit">צילום: דב בער העכטמן</span>
+      <div class="pass-dest">
+        <div class="code">770</div>
+        <div class="where">איסטרן פארקווי<br>ברוקלין, ניו יורק</div>
+      </div>
+    </div>
+    <div class="perf" aria-hidden="true"></div>
+    <div class="pass-stub">
+      <div class="field"><div class="k">ממריאות</div><div class="v">ט״ז אדר א׳</div></div>
+      <div class="field"><div class="k">עוד</div><div class="v big">125 ימים</div></div>
+      <div class="field"><div class="k">תחנה</div><div class="v">חשוון</div></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="תחנות המסע">
+    <div class="sec-h"><h2>הדרך</h2><span class="aside">5 חודשים, תחנה אחת בכל פעם</span></div>
+    <div class="route">
+      <ol class="stops">
+        <li class="stop now"><span class="dot"></span><span class="n">חשוון</span></li>
+        <li class="stop"><span class="dot"></span><span class="n">כסלו</span></li>
+        <li class="stop"><span class="dot"></span><span class="n">טבת</span></li>
+        <li class="stop"><span class="dot"></span><span class="n">שבט</span></li>
+        <li class="stop"><span class="dot"></span><span class="n">אדר א׳</span></li>
+        <li class="stop dest"><span class="dot"></span><span class="n">770</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="ההכנה של היום">
+    <div class="sec-h"><h2>ההכנה של היום</h2><span class="aside" id="todayCount">0 מתוך 2</span></div>
+    <div class="today">
+      <button class="task" id="t-story" aria-pressed="false" type="button">
+        <span class="check"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" stroke="var(--on-wine)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><span class="kind">סיפור לפני השינה</span><br><span class="t">דמעות בשדה התעופה</span></span>
+        <span class="open">לקריאה ›</span>
+      </button>
+      <button class="task" id="t-study" aria-pressed="false" type="button">
+        <span class="check"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" stroke="var(--on-wine)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><span class="kind">לימוד יומי</span><br><span class="t">קטע הלימוד של היום</span></span>
+        <span class="open">ללימוד ›</span>
+      </button>
+      <div class="stamp" id="stamp" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="המשימות של חשוון">
+    <div class="sec-h"><h2>החודש שלי</h2><span class="aside">חשוון</span></div>
+    <div class="habits">
+      <div class="habit">
+        <div class="row"><span class="name">נטילת ידיים ליד המיטה<span class="req">חובה</span></span><span class="count"><b>1</b> / 15 ימים</span></div>
+        <div class="bar"><i style="width:6.7%"></i></div>
+      </div>
+      <div class="habit">
+        <div class="row"><span class="name">חלוקת נרות שבת<span class="req">משימת החודש</span></span><span class="count"><b>0</b> / 1</span></div>
+        <div class="bar"><i style="width:0%"></i></div>
+      </div>
+      <div class="habit">
+        <div class="row"><span class="name">ניגון החודש<span class="req">השבוע</span></span><span class="count"><b>0</b> / 1</span></div>
+        <div class="bar"><i style="width:0%"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="niggun" aria-label="ניגון החודש">
+    <img src="data:image/jpeg;base64,__IMGREBBE__" alt="הרבי מנופף לשלום">
+    <div class="body">
+      <span class="k">ניגון החודש</span>
+      <span class="name">והריקותי לכם ברכה</span>
+      <button class="play" type="button" id="playBtn">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M10 6 2.5 10.5v-9z" fill="currentColor"/></svg>
+        האזנה
+      </button>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="מה מחכה בחשוון">
+    <div class="sec-h"><h2>בקרוב בחשוון</h2></div>
+    <ul class="events">
+      <li class="event">
+        <div class="d"><div class="day">י״ט</div><div class="mo">חשוון</div></div>
+        <div><div class="what">שבת קבוצתית<span class="pill">חובה</span></div><div class="meta">מתחילות בערב שבת, יום שישי 30.10</div></div>
+      </li>
+      <li class="event">
+        <div class="d"><div class="day">ט״ז</div><div class="mo">חשוון</div></div>
+        <div><div class="what">השיעור השבועי</div><div class="meta">יום שלישי 27.10</div></div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="goal" aria-label="היעד שלי לחשוון">
+    <div class="sec-h"><h2>היעד שלי לחשוון</h2></div>
+    <label for="goal">מה הייתי רוצה לחזק בחודש הזה?</label>
+    <textarea id="goal" placeholder="למשל: לקרוא את הסיפור כל לילה לפני השינה, גם כשאני עייפה"></textarea>
+  </section>
+</div>
+
+<nav class="tabs" aria-label="ניווט">
+  <ul>
+    <li><a href="#" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>בית</a></li>
+    <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9h16M9 3v4M15 3v4"/></svg>החודש</a></li>
+    <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h6"/></svg>המסע שלי</a></li>
+    <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>פינת החודש</a></li>
+  </ul>
+</nav>
+
+<script>
+(function(){
+  const tasks=[document.getElementById('t-story'),document.getElementById('t-study')];
+  const count=document.getElementById('todayCount');
+  const stamp=document.getElementById('stamp');
+  function update(){
+    const done=tasks.filter(t=>t.getAttribute('aria-pressed')==='true').length;
+    count.textContent=done+' מתוך 2';
+    stamp.textContent= done===2 ? 'יום שלם במסע. עוד צעד קרוב יותר ל־770' : '';
+  }
+  tasks.forEach(t=>t.addEventListener('click',()=>{
+    t.setAttribute('aria-pressed', t.getAttribute('aria-pressed')==='true'?'false':'true');
+    update();
+  }));
+  document.querySelectorAll('nav.tabs a').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+  update();
+})();
+</script>
