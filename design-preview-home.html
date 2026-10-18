@@ -106,12 +106,17 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 .ticket[aria-pressed="true"] .stamp{opacity:1;transform:rotate(-14deg) scale(1)}
 .today-note{font-family:var(--font-hand);font-size:15px;color:var(--wine-2);text-align:center;min-height:1.6em;margin-top:10px}
 
-.bonus{margin-top:10px;width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:transparent;border:1.5px dashed var(--gold);border-radius:16px;padding:11px 14px;font:inherit;color:inherit;text-align:right;cursor:pointer}
-.bonus:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
-.b-tag{font-size:11.5px;font-weight:700;color:#FFF8EC;background:var(--gold);border-radius:99px;padding:2px 10px}
-.b-t{font-weight:600}
-.b-s{font-size:13.5px;color:var(--gold);font-weight:600;white-space:nowrap}
-.bonus[aria-pressed="true"]{background:var(--gold-soft);border-style:solid}
+.video{margin-top:10px;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.v-main{display:flex;flex-direction:column;gap:6px}
+.v-tag{align-self:flex-start;font-size:11.5px;font-weight:600;color:var(--wine);background:var(--rose-tint);border-radius:99px;padding:2px 10px}
+.v-t{font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.25}
+.v-weeks{color:var(--muted);opacity:1}
+.v-weeks i{background:var(--rose-tint)}
+.v-weeks i.on{background:var(--wine)}
+.v-weeks i.now{outline-color:var(--rose)}
+.v-acts{display:flex;gap:10px;flex-wrap:wrap}
+.btn-outline{background:transparent;color:var(--wine);border:1.5px solid var(--wine)}
+.btn-outline[aria-pressed="true"]{background:var(--wine);color:var(--on-wine)}
 /* ---------- mission ---------- */
 .mission{background:var(--rose-tint);border-radius:22px;padding:18px 16px 16px;display:flex;flex-direction:column;gap:12px}
 .mission .k{font-size:12px;letter-spacing:.06em;color:var(--wine);font-weight:600}
@@ -242,11 +247,17 @@ nav.tabs svg{width:21px;height:21px}
         </button>
       </div>
       <p class="today-note" id="todayNote" aria-live="polite"></p>
-      <button class="bonus" id="bonus" type="button" aria-pressed="false">
-        <span class="b-tag">בונוס</span>
-        <span class="b-t">סרטון השבוע של הרבי</span>
-        <span class="b-s" id="bonusS">צפיתי ›</span>
-      </button>
+      <div class="video" aria-label="סרטון השבוע">
+        <div class="v-main">
+          <span class="v-tag">סרטון השבוע</span>
+          <span class="v-t">הסרטון של הרבי לשבוע הזה</span>
+          <div class="weeks v-weeks"><span>השבועות של חשוון:</span><i class="on"></i><i class="now" id="vNow"></i><i></i><i></i></div>
+        </div>
+        <div class="v-acts">
+          <a class="btn btn-wine" href="https://www.youtube.com/watch?v=nJVbQYeA-NA&amp;t=271s" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M10 6 2.5 10.5v-9z" fill="currentColor"/></svg>לצפייה</a>
+          <button class="btn btn-outline" id="vBtn" type="button" aria-pressed="false">צפיתי</button>
+        </div>
+      </div>
     </section>
 
     <section class="mission" aria-label="המשימה של חשוון">
@@ -343,8 +354,8 @@ nav.tabs svg{width:21px;height:21px}
 
   var nb=document.getElementById('nBtn'), wn=document.getElementById('wNow');
   nb.addEventListener('click',function(){var on=nb.getAttribute('aria-pressed')!=='true';nb.setAttribute('aria-pressed',on);nb.textContent=on?'שמעתי השבוע ✓':'שמעתי השבוע';wn.classList.toggle('on',on);});
-  var bo=document.getElementById('bonus'),bs=document.getElementById('bonusS');
-  bo.addEventListener('click',function(){var on=bo.getAttribute('aria-pressed')!=='true';bo.setAttribute('aria-pressed',on);bs.textContent=on?'נוסף לך בונוס ✦':'צפיתי ›';});
+  var vb=document.getElementById('vBtn'),vn=document.getElementById('vNow');
+  vb.addEventListener('click',function(){var on=vb.getAttribute('aria-pressed')!=='true';vb.setAttribute('aria-pressed',on);vb.textContent=on?'צפיתי ✓':'צפיתי';vn.classList.toggle('on',on);});
   document.querySelectorAll('nav.tabs a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
 })();
 </script>
