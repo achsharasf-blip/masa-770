@@ -4,7 +4,7 @@
 -- ============================================================
 
 insert into months (hebrew_name, hebrew_year, start_date, end_date) values
-  ('חשוון', 5787, '2026-10-12', '2026-11-10'),   -- 30 יום
+  ('חשוון', 5787, '2026-10-12', '2026-11-10'),   -- 30 יום; ניגון: והריקותי לכם ברכה
   ('כסלו',  5787, '2026-11-11', '2026-12-10'),   -- 30 יום
   ('טבת',   5787, '2026-12-11', '2027-01-08'),   -- 29 יום
   ('שבט',   5787, '2027-01-09', '2027-02-07'),   -- 30 יום
@@ -13,3 +13,6 @@ insert into months (hebrew_name, hebrew_year, start_date, end_date) values
 -- המנהלת
 insert into allowed_emails (email, display_name, role)
 values (lower('achsharasf@gmail.com'), 'מנהלת', 'admin');
+
+-- ניגון חשוון
+update months set niggun_title = 'והריקותי לכם ברכה' where hebrew_name = 'חשוון';
