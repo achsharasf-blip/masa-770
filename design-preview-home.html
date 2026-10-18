@@ -106,17 +106,30 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 .ticket[aria-pressed="true"] .stamp{opacity:1;transform:rotate(-14deg) scale(1)}
 .today-note{font-family:var(--font-hand);font-size:15px;color:var(--wine-2);text-align:center;min-height:1.6em;margin-top:10px}
 
-.video{margin-top:10px;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px}
-.v-main{display:flex;flex-direction:column;gap:6px}
-.v-tag{align-self:flex-start;font-size:11.5px;font-weight:600;color:var(--wine);background:var(--rose-tint);border-radius:99px;padding:2px 10px}
-.v-t{font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.25}
-.v-weeks{color:var(--muted);opacity:1}
+.video{margin-top:10px;background:var(--card);border:1.5px solid var(--line);border-radius:20px;overflow:hidden}
+.v-thumb{position:relative;display:block;aspect-ratio:16/9;max-width:100%;color:#FFF6EE;text-decoration:none;overflow:hidden}
+.v-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.v-thumb:hover img{transform:scale(1.04)}
+.v-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,8,16,.25),rgba(40,8,16,.05) 40%,rgba(60,10,22,.88))}
+.v-thumb > span{position:absolute;z-index:1}
+.v-thumb:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.v-badge{top:12px;right:12px;font-size:12px;font-weight:600;background:var(--wine);border-radius:99px;padding:3px 11px}
+.v-play{top:50%;left:50%;width:64px;height:64px;margin:-38px 0 0 -32px;border-radius:50%;background:rgba(251,243,233,.92);color:var(--wine);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(251,243,233,.25);animation:pulse 2.6s ease-in-out infinite}
+.v-play svg{width:28px;height:28px;margin-left:-3px}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 6px rgba(251,243,233,.28)}50%{box-shadow:0 0 0 14px rgba(251,243,233,0)}}
+.v-cap{bottom:12px;right:14px;left:14px;font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.25}
+.v-stamp{top:50%;left:50%;margin:-50px 0 0 -46px;width:92px;height:92px;border-radius:50%;border:3px solid var(--gold-soft);color:#FFF6EE;background:rgba(110,26,44,.85);display:grid;place-items:center;text-align:center;font-family:var(--font-display);font-size:16px;font-weight:600;line-height:1.1;opacity:0;transform:rotate(-14deg) scale(1.6);transition:opacity .25s, transform .3s cubic-bezier(.2,1.4,.4,1)}
+.v-stamp::before{content:"";position:absolute;inset:4px;border-radius:50%;border:1.5px dashed var(--gold-soft)}
+.video.done .v-stamp{opacity:1;transform:rotate(-14deg) scale(1)}
+.video.done .v-play{opacity:0}
+.v-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px}
+.v-weeks{color:var(--muted);opacity:1;font-size:12.5px}
 .v-weeks i{background:var(--rose-tint)}
 .v-weeks i.on{background:var(--wine)}
 .v-weeks i.now{outline-color:var(--rose)}
-.v-acts{display:flex;gap:10px;flex-wrap:wrap}
 .btn-outline{background:transparent;color:var(--wine);border:1.5px solid var(--wine)}
 .btn-outline[aria-pressed="true"]{background:var(--wine);color:var(--on-wine)}
+@media (prefers-reduced-motion: reduce){.v-play{animation:none}}
 /* ---------- mission ---------- */
 .mission{background:var(--rose-tint);border-radius:22px;padding:18px 16px 16px;display:flex;flex-direction:column;gap:12px}
 .mission .k{font-size:12px;letter-spacing:.06em;color:var(--wine);font-weight:600}
@@ -248,15 +261,18 @@ nav.tabs svg{width:21px;height:21px}
       </div>
       <p class="today-note" id="todayNote" aria-live="polite"></p>
       <div class="video" aria-label="סרטון השבוע">
-        <div class="v-main">
-          <span class="v-tag">סרטון השבוע</span>
-          <span class="v-t">הסרטון של הרבי לשבוע הזה</span>
-          <div class="weeks v-weeks"><span>השבועות של חשוון:</span><i class="on"></i><i class="now" id="vNow"></i><i></i><i></i></div>
-        </div>
-        <div class="v-acts">
-          <a class="btn btn-wine" href="https://www.youtube.com/watch?v=nJVbQYeA-NA" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M10 6 2.5 10.5v-9z" fill="currentColor"/></svg>לצפייה</a>
+        <a class="v-thumb" href="https://www.youtube.com/watch?v=nJVbQYeA-NA" target="_blank" rel="noopener" aria-label="לצפייה בסרטון השבוע">
+          <img src="data:image/jpeg;base64,__IMGVIDEO__" alt="">
+          <span class="v-badge">סרטון השבוע</span>
+          <span class="v-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+          <span class="v-cap">הסרטון של הרבי לשבוע הזה</span>
+          <span class="stamp v-stamp" aria-hidden="true">צפיתי<br>י׳ חשוון</span>
+        </a>
+        <div class="v-row">
+          <div class="weeks v-weeks"><i class="on"></i><i class="now" id="vNow"></i><i></i><i></i><span>שבוע 2 מתוך 4</span></div>
           <button class="btn btn-outline" id="vBtn" type="button" aria-pressed="false">צפיתי</button>
         </div>
+      </div>
       </div>
     </section>
 
@@ -355,7 +371,7 @@ nav.tabs svg{width:21px;height:21px}
   var nb=document.getElementById('nBtn'), wn=document.getElementById('wNow');
   nb.addEventListener('click',function(){var on=nb.getAttribute('aria-pressed')!=='true';nb.setAttribute('aria-pressed',on);nb.textContent=on?'שמעתי השבוע ✓':'שמעתי השבוע';wn.classList.toggle('on',on);});
   var vb=document.getElementById('vBtn'),vn=document.getElementById('vNow');
-  vb.addEventListener('click',function(){var on=vb.getAttribute('aria-pressed')!=='true';vb.setAttribute('aria-pressed',on);vb.textContent=on?'צפיתי ✓':'צפיתי';vn.classList.toggle('on',on);});
+  var vc=document.querySelector('.video');vb.addEventListener('click',function(){var on=vb.getAttribute('aria-pressed')!=='true';vb.setAttribute('aria-pressed',on);vb.textContent=on?'צפיתי ✓':'צפיתי';vn.classList.toggle('on',on);vc.classList.toggle('done',on);});
   document.querySelectorAll('nav.tabs a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();});});
 })();
 </script>
